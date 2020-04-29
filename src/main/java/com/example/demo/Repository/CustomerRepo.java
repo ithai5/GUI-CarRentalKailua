@@ -44,9 +44,9 @@ public class CustomerRepo {
 
     public Customer updateCustomer(int customerId, Customer customer){
         String sql = "UPDATE KeaProject.Customer " +
-                "SET fistName = ? , lastName = ? , email = ? " +
+                "SET firstName = ? , lastName = ? , email = ? " +
                 "WHERE customer_id = ? ";
         template.update(sql, customer.getFirstName(),customer.getLastName(),customer.getEmail(), customer.getCustomer_id());
-        return null;
+        return customer;
     }
 }

@@ -16,6 +16,7 @@ import java.util.List;
 public class HomeController {
     @Autowired
     CustomerService customerService;
+
     @GetMapping("/")
     public String index(Model model){
         List<Customer> customerList = customerService.fetchAll();
@@ -26,40 +27,53 @@ public class HomeController {
         return "home/index";
     }
 
-    @GetMapping("/createCustomer")
-    public String createNewCustomer(){
-        return "home/createCustomer";
+    @GetMapping("/customer/customerMenu")
+    public String customerMenu(Model model){
+        List<Customer> customerList = customerService.fetchAll();
+        model.addAttribute("customers", customerList);
+        for(int i = 0; i< customerList.size(); i++){
+            System.out.println(customerList.get(i));
+        }
+        return "home/customer/customerMenu";
     }
 
-    @PostMapping("/createCustomer")
-    public String createNewCustomer(@ModelAttribute Customer customer){
+    @GetMapping("/customer/createCustomer")
+    public String createCustomer(){
+        return "home/customer/createCustomer";
+    }
+
+    @PostMapping("/customer/createCustomer")
+    public String createCustomer(@ModelAttribute Customer customer){
         customerService.addCustomer(customer);
+        System.out.println(customer);
         return "redirect:/";
     }
 
-    @GetMapping("/viewCustomer/{customer_id}")
+    @GetMapping("/customer/viewCustomer/{customer_id}")
     public String viewCustomer(@PathVariable("customer_id") int customer_id, Model model){
         model.addAttribute("customer",customerService.findCustomerById(customer_id));
         return "home/viewCustomer";
     }
 
-    @GetMapping("/deleteCustomer/{customer_id}")
+    @GetMapping("/customer/deleteCustomer/{customer_id}")
     public String deleteCustomer(@PathVariable("customer_id") int customer_id){
         Boolean delete = customerService.deleteCustomer(customer_id);
         return "redirect:/";
     }
 
-    @GetMapping("/updateCustomer/{customer_id}")
+    @GetMapping("/customer/updateCustomer/{customer_id}")
     public String updateCustomer(@PathVariable("customer_id") int customer_id, Model model){
         model.addAttribute("customer",customerService.findCustomerById(customer_id));
-        return "home/updateCustomer";
+        return "home/customer/updateCustomer";
     }
 
-    @PostMapping("/updateCustomer")
+    @PostMapping("/customer/updateCustomer")
     public String updateCustomer(@ModelAttribute Customer customer){
         customerService.updateCustomer(customer.getCustomer_id(),customer);
+        System.out.println(customer);
         return "redirect:/";
     }
+
 
 
 }
