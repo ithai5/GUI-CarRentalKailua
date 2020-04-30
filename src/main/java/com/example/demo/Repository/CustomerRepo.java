@@ -13,6 +13,7 @@ import java.util.List;
 public class CustomerRepo {
     @Autowired
     JdbcTemplate template;
+
     public List<Customer> fetchAll(){
         String sql = "SELECT * " +
                 "FROM KeaProject.Customer";
@@ -46,7 +47,7 @@ public class CustomerRepo {
         String sql = "UPDATE KeaProject.Customer " +
                 "SET firstName = ? , lastName = ? , email = ? " +
                 "WHERE customer_id = ? ";
-        template.update(sql, customer.getFirstName(),customer.getLastName(),customer.getEmail(), customer.getCustomer_id());
+        template.update(sql, customer.getFirstName(),customer.getLastName(),customer.getEmail(), customerId);
         return customer;
     }
 }

@@ -17,7 +17,7 @@ public class RentalContractRepo {
 
     public List<RentalContract> fetchAll(){
         String sql = "SELECT * " +
-                "FROM KeaProject.RentalContract";
+                "FROM KeaProject.RentalContract ";
         RowMapper<RentalContract> rowMapper= new BeanPropertyRowMapper<>(RentalContract.class);
         return template.query(sql,rowMapper);
     }

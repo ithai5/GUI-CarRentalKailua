@@ -1,4 +1,3 @@
-/*
 package com.example.demo.Controller;
 
 import com.example.demo.Model.Customer;
@@ -22,28 +21,25 @@ public class CustomerController {
     public String customerMenu(Model model){
         List<Customer> customerList = customerService.fetchAll();
         model.addAttribute("customers", customerList);
-        for(int i = 0; i< customerList.size(); i++){
-            System.out.println(customerList.get(i));
-        }
+
         return "home/customer/customerMenu";
     }
 
     @GetMapping("/customer/createCustomer")
-    public String createNewCustomer(){
+    public String createCustomer(){
         return "home/customer/createCustomer";
     }
 
     @PostMapping("/customer/createCustomer")
-    public String createNewCustomer(@ModelAttribute Customer customer){
+    public String createCustomer(@ModelAttribute Customer customer){
         customerService.addCustomer(customer);
-        System.out.println(customer);
         return "redirect:/";
     }
 
     @GetMapping("/customer/viewCustomer/{customer_id}")
     public String viewCustomer(@PathVariable("customer_id") int customer_id, Model model){
         model.addAttribute("customer",customerService.findCustomerById(customer_id));
-        return "home/customer/viewCustomer";
+        return "home/viewCustomer";
     }
 
     @GetMapping("/customer/deleteCustomer/{customer_id}")
@@ -61,11 +57,9 @@ public class CustomerController {
     @PostMapping("/customer/updateCustomer")
     public String updateCustomer(@ModelAttribute Customer customer){
         customerService.updateCustomer(customer.getCustomer_id(),customer);
-        System.out.println(customer);
         return "redirect:/";
     }
 
 
 
 }
-*/

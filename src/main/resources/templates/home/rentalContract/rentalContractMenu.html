@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Contract Menu</title>
+    <link rel="stylesheet"  th:href="@{\css\main.css}">
+</head>
+<body>
+    <h1>Main menu</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Max Km</th>
+                <th>Start Km</th>
+                <th>Price</th>
+                <th>Licence Plate</th>
+                <th>Customer Id</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="rentalContract:${rentalContracts}">
+                <td th:text="${rentalContract.rentalContract_id}"></td>
+                <td th:text="${rentalContract.startDate}"></td>
+                <td th:text="${rentalContract.endDate}"></td>
+                <td th:text="${rentalContract.maxKm}"></td>
+                <td th:text="${rentalContract.startKm}"></td>
+                <td th:text="${rentalContract.totalPrice}"></td>
+                <td th:text="${rentalContract.licencePlate}"></td>
+                <td th:text="${rentalContract.customer_id}"></td>
+
+                <td>
+                    <a th:href="@{'/rentalContract/viewRentalContract'+${rentalContract.rentalContract_id}}">
+                        <button>View</button>
+                    </a>
+
+                    <a th:href="@{'/rentalContract/deleteRentalContract/'+${rentalContract.rentalContract_id}}">
+                        <button>Delete</button>
+                    </a>
+                    <a th:href="@{'/rentalContract/updateRentalContract/'+${rentalContract.rentalContract_id}}">
+                        <button>Update</button>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="createRentalContract">
+        <button>Create new contract</button>
+    </a>
+</body>
+</html>

@@ -6,21 +6,21 @@ import javax.persistence.Id;
 @Entity
 public class RentalContract {
     @Id
-    private int rentalContract_id;
+    private Integer rentalContract_id;
     private String startDate;
     private String endDate;
-    private int maxKm;
-    private int startKm;
-    private int totalPrice;
+    private Integer maxKm;
+    private Integer startKm;
+    private Integer totalPrice;
     private String licencePlate;
 
     //Foreign key
-    private int customer_id;
+    private Integer customer_id;
 
     public RentalContract() {
     }
 
-    public RentalContract(int rentalContract_id, String startDate, String endDate, int maxKm, int startKm, int totalPrice, String licencePlate, int customer_id) {
+    public RentalContract(Integer rentalContract_id, String startDate, String endDate, Integer maxKm, Integer startKm, Integer totalPrice, String licencePlate, Integer customer_id) {
         this.rentalContract_id = rentalContract_id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -31,11 +31,11 @@ public class RentalContract {
         this.customer_id = customer_id;
     }
 
-    public int getRentalContract_id() {
+    public Integer getRentalContract_id() {
         return rentalContract_id;
     }
 
-    public void setRentalContract_id(int rentalContract_id) {
+    public void setRentalContract_id(Integer rentalContract_id) {
         this.rentalContract_id = rentalContract_id;
     }
 
@@ -55,27 +55,27 @@ public class RentalContract {
         this.endDate = endDate;
     }
 
-    public int getMaxKm() {
+    public Integer getMaxKm() {
         return maxKm;
     }
 
-    public void setMaxKm(int maxKm) {
+    public void setMaxKm(Integer maxKm) {
         this.maxKm = maxKm;
     }
 
-    public int getStartKm() {
+    public Integer getStartKm() {
         return startKm;
     }
 
-    public void setStartKm(int startKm) {
+    public void setStartKm(Integer startKm) {
         this.startKm = startKm;
     }
 
-    public int getTotalPrice() {
+    public Integer getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -87,11 +87,11 @@ public class RentalContract {
         this.licencePlate = licencePlate;
     }
 
-    public int getCustomer_id() {
+    public Integer getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomer_id(Integer customer_id) {
         this.customer_id = customer_id;
     }
 }
