@@ -6,7 +6,7 @@
 </head>
 <body>
     <form action="/customer/updateCustomer" method="post">
-        <input type="text" name="customer_id" th:value="${customer.customer_id}" disabled>
+        <input type="text" name="customer_id" th:value="${customer.customer_id}" readonly>
         <input type="text" name="firstName" th:value="${customer.firstName}">
         <input type="text" name="lastName" th:value="${customer.lastName}">
         <input type="email" name="email" th:value="${customer.email}">

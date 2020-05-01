@@ -43,11 +43,11 @@ public class CustomerRepo {
         return template.update(sql,customerId)<0;
     }
 
-    public Customer updateCustomer(int customerId, Customer customer){
+    public Customer updateCustomer(Customer customer){
         String sql = "UPDATE KeaProject.Customer " +
-                "SET firstName = ? , lastName = ? , email = ? " +
-                "WHERE customer_id = ? ";
-        template.update(sql, customer.getFirstName(),customer.getLastName(),customer.getEmail(), customerId);
+                "SET firstName = ?, lastName = ?, email = ? " +
+                "WHERE customer_id = ?";
+        template.update(sql, customer.getFirstName(),customer.getLastName(),customer.getEmail(), customer.getCustomer_id());
         return customer;
     }
 }

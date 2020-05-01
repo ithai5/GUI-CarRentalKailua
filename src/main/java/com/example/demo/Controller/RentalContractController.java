@@ -19,11 +19,12 @@ import java.util.List;
 public class RentalContractController {
     @Autowired
     RentalContractService rentalContractService;
+    @Autowired
+    CustomerService temp;
 
     @GetMapping("/rentalContract/rentalContractMenu")
     public String rentalContractMenu(Model model) {
         List<RentalContract> rcList = rentalContractService.fetchAll();
-
         model.addAttribute("rentalContracts", rcList);
         return "home/rentalContract/rentalContractMenu";
     }
@@ -45,4 +46,12 @@ public class RentalContractController {
         return "redirect:/rentalContract/rentalContractMenu";
     }
 
+    @GetMapping("/rentalContract/viewRentalContract/{rentalContract_id}")
+    public String viewRentalContract(@PathVariable("rentalContract_id") int rentalContract_id, Model model){
+        RentalContract toView = rentalContractService.findRentalContractbyId(rentalContract_id);
+        System.out.println(toView);
+        model.addAttribute("rentalContract",toView);
+        model.addAttribute("customer", temp.findCustomerById(toView.getCustomer_id()));
+        return "home/rentalContract/viewRentalContract";
+    }
 }

@@ -27,7 +27,7 @@ public class CustomerService {
         return customerRepo.deleteCustomer(customer_id);
     }
 
-    public Customer updateCustomer(int customer_id, Customer customer){
-        return customerRepo.updateCustomer(customer_id,customer);
+    public Customer updateCustomer(Customer customer){
+        return customerRepo.updateCustomer(customer);
     }
 }

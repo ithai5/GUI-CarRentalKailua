@@ -94,4 +94,18 @@ public class RentalContract {
     public void setCustomer_id(Integer customer_id) {
         this.customer_id = customer_id;
     }
+
+    @Override
+    public String toString() {
+        return "RentalContract{" +
+                "rentalContract_id=" + rentalContract_id +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", maxKm=" + maxKm +
+                ", startKm=" + startKm +
+                ", totalPrice=" + totalPrice +
+                ", licencePlate='" + licencePlate + '\'' +
+                ", customer_id=" + customer_id +
+                '}';
+    }
 }

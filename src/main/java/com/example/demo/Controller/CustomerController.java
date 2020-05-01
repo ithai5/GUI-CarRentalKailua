@@ -39,7 +39,7 @@ public class CustomerController {
     @GetMapping("/customer/viewCustomer/{customer_id}")
     public String viewCustomer(@PathVariable("customer_id") int customer_id, Model model){
         model.addAttribute("customer",customerService.findCustomerById(customer_id));
-        return "home/viewCustomer";
+        return "home/customer/viewCustomer";
     }
 
     @GetMapping("/customer/deleteCustomer/{customer_id}")
@@ -56,7 +56,7 @@ public class CustomerController {
 
     @PostMapping("/customer/updateCustomer")
     public String updateCustomer(@ModelAttribute Customer customer){
-        customerService.updateCustomer(customer.getCustomer_id(),customer);
+        customerService.updateCustomer(customer);
         return "redirect:/";
     }
 
