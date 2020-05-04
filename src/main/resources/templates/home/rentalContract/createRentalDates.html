@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Rental Contract</title>
+</head>
+<body>
+    <form action="/rentalContract/createRentalContract" method="get">
+    <h1>Choose start and end date for your contract</h1>
+    <div>Enter start date</div>
+        <input type="datetime-local" name="startDate" required>
+    <div>Enter end date</div>
+        <input type="datetime-local" name="endDate" required>
+
+    <div>Choose carType</div>
+        <ul>
+            <span>Family</span>
+            <li><input type="radio" id="family" name="className" value="family"></li>
+            <span>Luxury</span>
+            <li><input type="radio" id="luxury" name="className" value="luxury"></li>
+            <span>Sport</span>
+            <li><input type="radio" id="sport" name="className" value="sport"></li>
+            <span>No preference</span>
+            <li><input type="radio" id=" " name="className" value="$" checked></li>
+
+        </ul>
+            <input type="submit" value="Choose dates">
+    </form>
+</body>
+</html>

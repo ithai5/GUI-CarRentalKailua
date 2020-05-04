@@ -13,6 +13,8 @@ public class CarDisplay {
     private int pricePerDay;
     private int odometer;
     private String registration;
+    private String startDate;
+    private String endDate;
 
     public CarDisplay (String licencePlate, String brand, String model, String className, int pricePerDay, int odometer, String registration)
     {
@@ -99,6 +101,26 @@ public class CarDisplay {
         this.registration = registration;
     }
 
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = formatTime(startDate);
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = formatTime(endDate);
+    }
+    String formatTime(String time) {
+        time = time.replace('T', ' ');
+        System.out.println(time);
+        return time;
+    }
     @Override
     public String toString() {
         return "CarDisplay{" +

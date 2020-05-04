@@ -1,9 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Model.CarDisplay;
-import com.example.demo.Model.Customer;
 import com.example.demo.Model.RentalContract;
-import com.example.demo.Repository.RentalContractRepo;
 import com.example.demo.Service.CustomerService;
 import com.example.demo.Service.RentalContractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,19 +29,22 @@ public class RentalContractController {
         return "home/rentalContract/rentalContractMenu";
     }
 
-    @GetMapping("/rentalContract/createRentalContract1")
+    @GetMapping("/rentalContract/createRentalDates")
     public String createRentalDates() {
-        return "home/rentalContract/createRentalContract1";
+        return "home/rentalContract/createRentalDates";
     }
 
-    @GetMapping("/rentalContract/createRentalContract2/{startDate}-{endDate}-{carType}")
-    public String createRentalContract(@PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate, @PathVariable("carType") String carType) {
-        System.out.println(startDate + " " + endDate + " " + carType);
-        System.out.println("Yeet");
-        return "redirect:/rentalContract/createRentalContract2";
+    @GetMapping("/rentalContract/createRentalContract")
+    public String createRentalContract(@ModelAttribute CarDisplay carDisplay, Model model) {
+        List<CarDisplay> availableCars = rentalContractService.availableCars(carDisplay.getStartDate(),carDisplay.getEndDate(),carDisplay.getClassName());
+        model.addAttribute("customers", temp.fetchAll());
+        model.addAttribute("carDisplay", carDisplay);
+        model.addAttribute("availableCars", availableCars);
+        return "home/rentalContract/createRentalContract";
     }
     @PostMapping("/rentalContract/createRentalContract")
     public String createRentalContract(@ModelAttribute RentalContract rentalContract) {
+        System.out.println(rentalContract);
         rentalContractService.addRentalContract(rentalContract);
         return "redirect:/rentalContract/rentalContractMenu";
     }
