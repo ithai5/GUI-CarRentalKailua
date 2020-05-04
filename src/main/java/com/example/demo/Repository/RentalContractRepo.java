@@ -1,6 +1,6 @@
 package com.example.demo.Repository;
 
-import com.example.demo.Model.Customer;
+import com.example.demo.Model.CarDisplay;
 import com.example.demo.Model.RentalContract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -20,6 +20,21 @@ public class RentalContractRepo {
                 "FROM KeaProject.RentalContract ";
         RowMapper<RentalContract> rowMapper= new BeanPropertyRowMapper<>(RentalContract.class);
         return template.query(sql,rowMapper);
+    }
+
+    public List<CarDisplay> availableCars(String startDate, String endDate, String className) {
+        String sql = "SELECT licencePlate, brand, model, className, pricePerDay, odometer, registration " +
+                "FROM Specs AS b " +
+                "JOIN " +
+                "(SELECT CarInfo.licencePlate, startDate, endDate, rentalContract_id, CarInfo.specs_id, CarInfo.odometer, CarInfo.registration " +
+                "FROM KeaProject.CarInfo AS a " + "JOIN KeaProject.RentalContract ON a.licencePlate= RentalContract.licencePlate " +
+                "AND ((startDate >= '" + startDate + "' AND startDate <= '" + endDate + "') " + "OR(endDate >= '" + startDate + "' AND endDate <= '" + endDate + "') " +
+                "OR (startDate >= '" + startDate + "' AND endDate <= '" + endDate + "')) " +
+                "RIGHT JOIN CarInfo ON a.licencePlate = CarInfo.licencePlate " +
+                "WHERE rentalContract_id IS NULL) AS c " + "ON b.specs_id = c.specs_id  " +
+                "JOIN KeaProject.ClassType AS d " + "ON b.className_id = d.className_id AND className LIKE '%" + className + "'";
+
+        return template.query(sql,new BeanPropertyRowMapper<>(CarDisplay.class));
     }
 
     public RentalContract addRentalContract(RentalContract contract){

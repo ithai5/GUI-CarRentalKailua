@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Model.CarDisplay;
 import com.example.demo.Model.Customer;
 import com.example.demo.Model.RentalContract;
 import com.example.demo.Repository.RentalContractRepo;
@@ -29,11 +30,17 @@ public class RentalContractController {
         return "home/rentalContract/rentalContractMenu";
     }
 
-    @GetMapping("/rentalContract/createRentalContract")
-    public String createRentalContract() {
-        return "home/rentalContract/createRentalContract";
+    @GetMapping("/rentalContract/createRentalContract1")
+    public String createRentalDates() {
+        return "home/rentalContract/createRentalContract1";
     }
 
+    @GetMapping("/rentalContract/createRentalContract2/{startDate}-{endDate}-{carType}")
+    public String createRentalContract(@PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate, @PathVariable("carType") String carType) {
+        System.out.println(startDate + " " + endDate + " " + carType);
+        System.out.println("Yeet");
+        return "redirect:/rentalContract/createRentalContract2";
+    }
     @PostMapping("/rentalContract/createRentalContract")
     public String createRentalContract(@ModelAttribute RentalContract rentalContract) {
         rentalContractService.addRentalContract(rentalContract);
@@ -54,4 +61,13 @@ public class RentalContractController {
         model.addAttribute("customer", temp.findCustomerById(toView.getCustomer_id()));
         return "home/rentalContract/viewRentalContract";
     }
+
+    @GetMapping("/rentalContract/testCar")
+    public String testCar(Model model) {
+        List<CarDisplay> rcList = rentalContractService.availableCars("2020-06-01", "2021-01-01", "");
+        model.addAttribute("carDisplays", rcList);
+        return "home/rentalContract/testCar";
+    }
+    //@GetMapping("/rentalContract/updateRentalContract/{rentalContract_id}")
+
 }

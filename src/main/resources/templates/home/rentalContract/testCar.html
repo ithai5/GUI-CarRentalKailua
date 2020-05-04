@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>display car</title>
+</head>
+<body>
+<h1>Contract info</h1>
+    <table>
+    <thead>
+    <tr>
+        <th>lp</th>
+        <th>brand</th>
+        <th>model</th>
+        <th>classname</th>
+        <th>Price</th>
+        <th>odometer</th>
+        <th>registration</th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="carDisplay:${carDisplays}">
+        <td th:text="${carDisplay.licencePlate}"></td>
+        <td th:text="${carDisplay.brand}"></td>
+        <td th:text="${carDisplay.model}"></td>
+        <td th:text="${carDisplay.className}"></td>
+        <td th:text="${carDisplay.pricePerDay}"></td>
+        <td th:text="${carDisplay.odometer}"></td>
+        <td th:text="${carDisplay.registration}"></td>
+    </tr>
+    </tbody>
+    </table>
+
+</body>
+</html>

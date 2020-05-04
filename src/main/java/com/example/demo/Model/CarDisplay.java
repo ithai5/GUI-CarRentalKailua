@@ -98,4 +98,17 @@ public class CarDisplay {
     {
         this.registration = registration;
     }
+
+    @Override
+    public String toString() {
+        return "CarDisplay{" +
+                "licencePlate='" + licencePlate + '\'' +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", className='" + className + '\'' +
+                ", pricePerDay=" + pricePerDay +
+                ", odometer=" + odometer +
+                ", registration='" + registration + '\'' +
+                '}';
+    }
 }

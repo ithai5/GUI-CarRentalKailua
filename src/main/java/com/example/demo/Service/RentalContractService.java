@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 
+import com.example.demo.Model.CarDisplay;
 import com.example.demo.Model.Customer;
 import com.example.demo.Model.RentalContract;
 import com.example.demo.Repository.CustomerRepo;
@@ -13,6 +14,7 @@ import java.util.List;
 public class RentalContractService {
     @Autowired
     RentalContractRepo rentalContractRepo;
+
     public List<RentalContract> fetchAll(){
         return rentalContractRepo.fetchAll();
     }
@@ -31,5 +33,9 @@ public class RentalContractService {
 
     public RentalContract updateRentalContract(int rentalContract_id, RentalContract rentalContract){
         return rentalContractRepo.updateRentalContract(rentalContract_id, rentalContract);
+    }
+
+    public List<CarDisplay> availableCars(String startDate, String endDate, String className) {
+        return rentalContractRepo.availableCars(startDate, endDate, className);
     }
 }

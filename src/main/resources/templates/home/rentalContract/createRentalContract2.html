@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Rental Contract</title>
+</head>
+<body>
+<h1>Create New Contract</h1>
+<form action="/rentalContract/createRentalContract" method="post">
+    <div>Enter start date</div>
+    <input type="datetime-local" name="startDate" required>
+    <div>Enter end date</div>
+    <input type="datetime-local" name="endDate" required>
+    <div>Enter max km</div>
+    <input type="text" name="maxKm" placeholder="5000">
+    <div>Enter start km</div>
+    <input type="text" name="startKm" placeholder="12000" required>
+    <div>Enter total price</div>
+    <input type="text" name="totalPrice" placeholder="22500">
+    <div>Enter licence plate</div>
+    <input type="text" name="licencePlate" placeholder=de95676>
+    <div>Enter customer id</div>
+    <input type="text" name="customer_id" placeholder="13">
+
+
+
+    <input type="submit" value="Create New Rental Contract">
+</form>
+</body>
+</html>
