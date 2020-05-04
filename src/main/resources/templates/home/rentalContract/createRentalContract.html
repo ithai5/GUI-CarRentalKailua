@@ -13,7 +13,7 @@
     <input type="text" name="endDate"  th:value="${carDisplay.endDate}" readonly>
     <ul>
         <li th:each="availableCar:${availableCars}">
-            <input type="radio" th:value="${availableCar.licencePlate}">
+            <input type="radio" name="licencePlate" th:value="${availableCar.licencePlate}">
             <span th:text="${availableCar.licencePlate}"></span>
         </li>
     </ul>
@@ -24,11 +24,12 @@
     <div>Enter total price</div>
     <input type="text" name="totalPrice" placeholder="22500">
     <br>
-    <select th:field="*{customers}">
-        <option th:each="customer : ${customers}"
-                th:value="*{customer.customer_id}"
-                ><span th:text="${customer.firstName}"></span></option>
-    </select>
+    <ul>
+        <li th:each="customer:${customers}">
+            <input type="radio" name="customer_id" th:value="${customer.customer_id}">
+            <span th:text="${customer.firstName}"></span>
+        </li>
+    </ul>
     <br>
     <input type="submit" value="Create New Rental Contract">
 </form>
